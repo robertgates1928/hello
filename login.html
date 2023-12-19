@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Vendor styles -->
+        <link rel="stylesheet" href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="vendors/bower_components/animate.css/animate.min.css">
+
+        <!-- App styles -->
+        <link rel="stylesheet" href="css/app.min.css">
+    </head>
+
+    <body data-sa-theme="7">
+        <div class="login">
+
+            <!-- Login -->
+            <div class="login__block active" id="l-login">
+                <div class="login__block__header">
+                    <i class="zmdi zmdi-account-circle"></i>
+                    Hi there! Please Sign in
+                </div>
+
+                <div class="login__block__body">
+                    <div class="form-group">
+                        <input id="name" type="text" class="form-control text-center" placeholder="UserName">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="pass"  type="password" class="form-control text-center" placeholder="Password">
+                    </div>
+
+                    <a class="btn btn--icon login__block__btn" onclick="goLogin();return;"><i class="zmdi zmdi-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <script>
+            function goLogin() {
+                var n = $("#name").val();
+                if(!n){
+                    alert('UserName cannot empty!');
+                    return;
+                }
+                var p = $("#pass").val();
+                if(!p){
+                    alert('Password cannot empty!');
+                    return;
+                }
+                var obj = {}; 
+                obj['name'] = n;
+                obj['pwd'] = p;
+                $.post("https://vsharetest.azurewebsites.net/api/login",obj,
+                // $.post("http://localhost:7071/api/login",obj,
+                    function(data,status){
+                        var rs = JSON.parse(data);
+                        if(rs.result){
+                            alert("Login success!");
+                            $.cookie('name', obj['name']);
+                            $.cookie('pwd', obj['pwd']);
+                            location.href="/index.html";
+                        }else{
+                            alert("UserName or Password is wrong!");
+                        }
+                    });
+                
+            }
+        </script>
+        <!-- Javascript -->
+        <!-- Vendors -->
+        <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+        <script src="vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- App functions and actions -->
+        <script src="js/app.min.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+    </body>
+</html>

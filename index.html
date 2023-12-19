@@ -1,1 +1,293 @@
-hello world
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>vshare 1.0</title>
+
+        <!-- Vendor styles -->
+        <link rel="stylesheet" href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="vendors/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
+        <link rel="stylesheet" href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
+
+        <!-- App styles -->
+        <link rel="stylesheet" href="css/app.min.css?t=11">
+    </head>
+
+    <body data-sa-theme="7">
+        <main class="main">
+            <div class="page-loader">
+                <div class="page-loader__spinner">
+                    <svg viewBox="25 25 50 50">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+                    </svg>
+                </div>
+            </div>
+
+            <header class="header">
+                <div class="navigation-trigger hidden-xl-up" data-sa-action="aside-open" data-sa-target=".sidebar">
+                    <i class="zmdi zmdi-menu"></i>
+                </div>
+
+                <div class="logo hidden-sm-down">
+                    <h1><a href="index.html">vshare 1.0</a></h1>
+                </div>
+
+            </header>
+
+            <aside class="sidebar">
+                <div class="scrollbar-inner">
+
+                    <div class="user">
+                        <div class="user__info" >
+                            <img class="user__img" src="demo/img/profile-pics/8.jpg" alt="">
+                            <div>
+                                <div class="user__name" id="uname">Test1</div>
+                                <div class="user__email"><a onclick="logout();return;">Logout</a></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <ul class="navigation">
+                        <li class="@@photogalleryactive"><a href="index.html"><i class="zmdi zmdi-home"></i> home</a></li>
+                        
+                        <div class="card profile">
+                       
+
+                            <div class="profile__info">
+                                <p id="ans">Cras mattis consectetur purus sit amet fermentum. Maecenas sed diam eget risus varius blandit sit amet non magnae tiam porta sem malesuada magna mollis euismod.</p>
+                        
+                                
+                            </div>
+                        </div>
+                        <form action="https://www.google.com/search" method="get" target="_blank" class="search-form">
+                            <input type="text" id="qes" name="qes" placeholder="question?..." class="input-search">
+                            <button type="button" id="questionButton" class="btn btn-light active" onclick="goQuestion();">
+                                send
+                            </button>
+                        </form>
+                                                
+                    </ul>
+                </div>
+            </aside>
+
+            <div class="themes">
+    <div class="scrollbar-inner">
+        <a href="" class="themes__item active" data-sa-value="1"><img src="img/bg/1.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="2"><img src="img/bg/2.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="3"><img src="img/bg/3.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="4"><img src="img/bg/4.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="5"><img src="img/bg/5.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="6"><img src="img/bg/6.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="7"><img src="img/bg/7.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="8"><img src="img/bg/8.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="9"><img src="img/bg/9.jpg" alt=""></a>
+        <a href="" class="themes__item" data-sa-value="10"><img src="img/bg/10.jpg" alt=""></a>
+    </div>
+</div>
+
+            
+<section class="content">
+    <div class="content__inner">
+        <header class="content__title">
+            <h1>Photo Gallery</h1>
+
+            <div class="actions">
+                <a href="" class="actions__item zmdi zmdi-trending-up"></a>
+                <a href="" class="actions__item zmdi zmdi-check-all"></a>
+
+                <div class="dropdown actions__item">
+                    <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="" class="dropdown-item">Refresh</a>
+                        <a href="" class="dropdown-item">Manage Widgets</a>
+                        <a href="" class="dropdown-item">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="toolbar">
+            <div class="toolbar__label">
+                <form id="uploadButton" >
+                <input type="file" name="file" id="file" />
+                <button type="button" id="uploadButton" class="btn btn-light active" onclick="goUpload();">
+                    upload
+                </button>
+                </form>
+            </div>
+
+            <div class="actions">
+                <i class="actions__item zmdi zmdi-search" data-sa-action="toolbar-search-open"></i>
+                <a href="" class="actions__item zmdi zmdi-time"></a>
+                <div class="dropdown actions__item">
+                    <i class="zmdi zmdi-sort" data-toggle="dropdown"></i>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="" class="dropdown-item">Last Modified</a>
+                        <a href="" class="dropdown-item">Name</a>
+                        <a href="" class="dropdown-item">Size</a>
+                    </div>
+                </div>
+                <a href="" class="actions__item zmdi zmdi-help-outline"></a>
+            </div>
+
+            <div class="toolbar__search">
+                <input type="text" placeholder="Search...">
+                <i class="toolbar__search__close zmdi zmdi-long-arrow-left" data-sa-action="toolbar-search-close"></i>
+            </div>
+        </div>
+
+        <div class="row lightbox photos" id="imagelist">
+
+            <a href="demo/img/gallery/1.jpg" class="col-md-2 col-4">
+                <div class="lightbox__item photos__item">
+                    <img src="demo/img/gallery/thumbs/1.jpg" />
+                </div>
+            </a>
+
+            
+           
+        </div>
+    </div>
+
+</section>
+
+                
+        </main>
+        <!-- Javascript -->
+        <!-- Vendors -->
+        <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+        <script src="vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+        <script src="vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+
+        <script src="vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="vendors/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+        <script src="vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="vendors/bower_components/peity/jquery.peity.min.js"></script>
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+
+        <!-- Charts and maps-->
+        <script src="demo/js/flot-charts/curved-line.js"></script>
+        <script src="demo/js/flot-charts/line.js"></script>
+        <script src="demo/js/flot-charts/dynamic.js"></script>
+        <script src="demo/js/flot-charts/chart-tooltips.js"></script>
+        <script src="demo/js/other-charts.js"></script>
+        <script src="demo/js/jqvmap.js"></script>
+
+        <!-- App functions and actions -->
+        <script src="js/app.min.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script>
+            getdata();
+            function getdata() {
+                var name = $.cookie('name');
+                var pwd = $.cookie('pwd');
+                if(name==null||pwd==null){
+                    location.href="/login.html";
+                }else{
+                    $("#uname").text(name) ;
+                }
+
+                var obj = {}; 
+                obj['name'] = name;
+                $.ajax({
+                    url: 'https://vsharetest.azurewebsites.net/api/getimgs',
+                    // url: 'http://localhost:7071/api/getimgs',
+                    type: 'POST',
+                    data: obj,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data){
+                            var jsondata = $.parseJSON(data)
+                            console.log('get list success');
+                            var liststr = '';
+                            for(var i=0;i<jsondata.length;i++){
+                                imgurl = 'https://vsharetest.blob.core.windows.net/vshareblob/'+jsondata[i].filename+'?st=2023-12-18T07:07:45Z&si=read&spr=https&sv=2022-11-02&sr=c&sig=xvA5P2UfuXbhPgWImvxBUYLJMOoc9xTGMHvhQaY3xDA%3D';
+                                liststr += '<a href="'+imgurl+'" class="col-md-2 col-4">';
+                                liststr += '<div class="lightbox__item photos__item">';
+                                liststr += '<img src="'+imgurl+'" />';
+                                liststr += '</div>';
+                                liststr += '</a>';
+                            }
+                            $("#imagelist").html(liststr);
+                        }else{
+                            console.log('get list empty');
+                        }
+                        
+                    },
+                    error: function() {
+                        console.log('get list error');
+                    }
+                });
+            }
+            function logout(){
+                $.removeCookie('name');
+                $.removeCookie('pwd');
+                alert('logout success!');
+                location.href="/login.html";
+                
+            }
+
+            function goUpload() {
+                var name = $.cookie('name');
+                var formData = new FormData();
+                formData.append('file', $('#file')[0].files[0]);
+                $.ajax({
+                    url: 'https://vsharetest.azurewebsites.net/api/upload',
+                    // url: 'http://localhost:7071/api/upload',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        var rs = JSON.parse(data);
+                        if(rs.result){
+                            alert("upload success!");
+                        }else{
+                            alert("image name already exist!");
+                        }
+                        getdata();
+                    },
+                    error: function() {
+                        console.log('upload error');
+                    }
+                });
+            }
+            function goQuestion() {
+                var qes = $("#qes").val();
+                if(!qes){
+                    alert('question cannot empty!');
+                    return;
+                }
+                
+                var obj = {}; 
+                obj['qes'] = qes;
+                $.post("https://vsharetest.azurewebsites.net/api/qam",obj,
+                // $.post("http://localhost:7071/api/qam",obj,
+                    function(data,status){
+                        var rs = JSON.parse(data);
+                        if(rs.result){
+                            $("#ans").html(rs.msg);
+                        }else{
+                            // alert("UserName or Password is wrong!");
+                        }
+                    });
+                
+            }
+            
+        </script>
+    </body>
+</html>
